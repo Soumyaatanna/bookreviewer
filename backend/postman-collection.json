@@ -1,0 +1,91 @@
+{
+  "info": {
+    "name": "Book Review Platform API",
+    "_postman_id": "bcb6b9d8-0d00-4f10-9a11-000000000001",
+    "description": "Collection for testing Auth, Books, Reviews",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "header": [], "url": "{{BASE_URL}}/health" }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{BASE_URL}}/api/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\":\"Alice\",\n  \"email\":\"alice@example.com\",\n  \"password\":\"password123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{BASE_URL}}/api/auth/login",
+        "body": { "mode": "raw", "raw": "{\n  \"email\":\"alice@example.com\",\n  \"password\":\"password123\"\n}" }
+      }
+    },
+    {
+      "name": "Me",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }],
+        "url": "{{BASE_URL}}/api/auth/me"
+      }
+    },
+    {
+      "name": "Create Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+        ],
+        "url": "{{BASE_URL}}/api/books",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\":\"Dune\",\n  \"author\":\"Frank Herbert\",\n  \"description\":\"Epic sci-fi saga\",\n  \"genre\":\"Science Fiction\",\n  \"year\":1965\n}"
+        }
+      }
+    },
+    {
+      "name": "List Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{BASE_URL}}/api/books?page=1&limit=5&sort=-rating"
+      }
+    },
+    {
+      "name": "Book Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{BASE_URL}}/api/books/{{BOOK_ID}}"
+      }
+    },
+    {
+      "name": "Add Review",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+        ],
+        "url": "{{BASE_URL}}/api/reviews/{{BOOK_ID}}",
+        "body": { "mode": "raw", "raw": "{\n  \"rating\": 5,\n  \"reviewText\": \"Masterpiece!\"\n}" }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "BASE_URL", "value": "http://localhost:5000" },
+    { "key": "TOKEN", "value": "" },
+    { "key": "BOOK_ID", "value": "" }
+  ]
+}

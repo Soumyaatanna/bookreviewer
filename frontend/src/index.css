@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens (3-5 colors) */
+:root {
+  --color-bg: #0b0c0f; /* near-black background */
+  --color-fg: #e6e8ea; /* light gray foreground */
+  --color-primary: #1e90ff; /* primary blue */
+  --color-muted: #94a3b8; /* slate neutral */
+  --color-card: #111317;
+  --color-border: #1f2937;
+  --radius-md: 0.5rem;
+}
+
+html[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-fg: #0f172a;
+  --color-primary: #0ea5e9; /* sky blue */
+  --color-muted: #475569;
+  --color-card: #f8fafc;
+  --color-border: #e2e8f0;
+}
+
+body {
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
