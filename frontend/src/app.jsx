@@ -4,6 +4,7 @@ import Navbar from "./components/navbar.jsx"
 import ErrorBoundary from "./components/ErrorBoundary.jsx"
 import Login from "./pages/login.jsx"
 import Signup from "./pages/signup.jsx"
+import Home from "./pages/home.jsx"
 import BookList from "./pages/book-list.jsx"
 import BookDetails from "./pages/book-details.jsx"
 import AddEditBook from "./pages/add-edit-book.jsx"
@@ -19,7 +20,8 @@ export default function App() {
       <main className="mx-auto max-w-5xl px-4 py-6">
         <ErrorBoundary>
           <Routes>
-          <Route path="/" element={<BookList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/books" element={<BookList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/books/:id" element={<BookDetails />} />

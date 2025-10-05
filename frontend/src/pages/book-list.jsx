@@ -6,6 +6,7 @@ import api from "../api/axios.js"
 import BookCard from "../components/book-card.jsx"
 import Pagination from "../components/pagination.jsx"
 import SortFilterBar from "../components/sort-filter-bar.jsx"
+import SkeletonBookCard from "../components/skeleton-book-card.jsx"
 
 export default function BookList() {
   const [books, setBooks] = useState([])
@@ -40,15 +41,19 @@ export default function BookList() {
       <h1 className="mb-2 text-2xl font-semibold">Books</h1>
       <SortFilterBar initial={filters} onChange={setFilters} />
       {loading ? (
-        <div>Loading...</div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <SkeletonBookCard key={i} />
+          ))}
+        </div>
       ) : (
         <>
           {books.length === 0 ? (
             <div className="rounded-md border border-border bg-card p-6">No books found.</div>
           ) : (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {books.map((b) => (
-                <BookCard key={b._id} book={b} />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {books.map((b, i) => (
+                <BookCard key={b._id} book={b} index={i} />
               ))}
             </div>
           )}
